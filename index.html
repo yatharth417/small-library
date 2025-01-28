@@ -9,6 +9,30 @@
 <body>
     <h1>My Library</h1>
     <button class="addBook" onclick="addSampleBooks()">Add Sample Books</button>
+    <button class="newBook" onclick="showNewBookForm()">New Books</button>
+
+    <div id="newBookFormContainer" class="modal" style="display: none;">
+        <h3>Add New Book</h3>
+        <form id="newBookForm">
+            <label>
+                Title: <input type="text" id="bookTitle" required>
+            </label>
+            
+            <label>
+                Author <input type="text" id="bookAuthor" required>
+            </label>
+            
+            <label>
+                Pages: <input type="text" id="bookPages" required>
+            </label>
+            
+            <label>
+                Read: <input type="checkbox" id="bookRead" required>
+            </label>
+            <button type="submit">Add Book</button>
+            <button type="button" onclick="hideNewBookForm()">Cancel</button>
+        </form>
+    </div>
     <table id="libraryTable">
         <thead>
             <tr>

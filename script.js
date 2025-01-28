@@ -14,6 +14,7 @@ function addBookToLibrary(title, author, pages, hasRead){
 
 function displayBooks(){
     const tableBody = document.querySelector("#libraryTable tbody");
+    tableBody.innerHTML= "";
     Library.forEach((book, index) => {
         const row = document.createElement("tr");
 
@@ -26,8 +27,29 @@ function displayBooks(){
         tableBody.appendChild(row);
     });
 }
+function removeBook(index) {
+    Library.splice(index, 1);
+    displayBooks();
+}
 function addSampleBooks(){
     addBookToLibrary("1984", "George Orwell", 328, true);
     addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, false);
     addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, true);
 }
+function showNewBookForm(){
+    document.getElementById("newBookFormContainer").style.display = "block";
+}
+function hideNewBookForm(){
+    document.getElementById("newBookFormContainer").style.display = "none";
+}
+document.getElementById("newBookForm").addEventListener("submit", (event)=>{
+    event.preventDefault();
+    const title = document.getElementById("bookTitle").value;
+    const author = document.getElementById("bookAuthor").value;
+    const pages = parseInt(document.getElementById("bookPages").value);
+    const read = document.getElementById("bookRead").checked;
+
+    addBookToLibrary(title, author, pages, read);
+    hideNewBookForm();
+    document.getElementById("newBookForm").reset();
+})
